@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Track every past-paper question across Combined Mathematics, Physics and Chemistry for GCE A/L — papers, skipped questions, syllabus coverage and an 8-month countdown, all in one offline-friendly app." />
+<meta name="theme-color" content="#0a0f1e" />
+<title>A/L Past Paper Command Centre · Sri Lanka Maths Stream</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0f1e'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f2b844' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='4.5' fill='%23f2b844'/%3E%3Cpath d='M32 6v12M32 46v12M6 32h12M46 32h12' stroke='%23f2b844' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="15" fill="#141c38"/>
+        <circle cx="32" cy="32" r="16" fill="none" stroke="#f2b844" stroke-width="4.5"/>
+        <circle cx="32" cy="32" r="4.2" fill="#f2b844"/>
+        <path d="M32 8v11M32 45v11M8 32h11M45 32h11" stroke="#f2b844" stroke-width="4.5" stroke-linecap="round"/>
+      </svg>
+      <h1>Past Paper<br><span>Command Centre</span>
+        <small>GCE A/L · Maths Stream</small>
+      </h1>
+    </div>
+
+    <div class="nav-label">Track</div>
+    <button class="nav-btn active" data-nav="dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="9.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="5.5" rx="1.5"/><rect x="13.5" y="11.5" width="7.5" height="9.5" rx="1.5"/><rect x="3" y="15.5" width="7.5" height="5.5" rx="1.5"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-btn" data-nav="papers">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6M9 9h1.5"/></svg>
+      Past Papers
+    </button>
+    <button class="nav-btn" data-nav="deferred">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+      Deferred Queue
+      <span class="nav-badge" id="deferredNavBadge">0</span>
+    </button>
+    <button class="nav-btn" data-nav="syllabus">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+      Syllabus Coverage
+    </button>
+    <div class="nav-label">Prepare</div>
+    <button class="nav-btn" data-nav="plan">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6M12 4a8 8 0 0 1 4.5 14.6c-.9.7-1.5 1.4-1.5 2.4h-6c0-1-.6-1.7-1.5-2.4A8 8 0 0 1 12 4z"/></svg>
+      8-Month Game Plan
+    </button>
+    <button class="nav-btn" data-nav="settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.04 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h0a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56h0a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v0a1.7 1.7 0 0 0 1.56 1.04H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"/></svg>
+      Settings &amp; Backup
+    </button>
+
+    <div class="sidebar-footer" aria-label="Countdown to exam">
+      <div class="days" id="sidebarDays">–</div>
+      <div class="days-label">days to A/L</div>
+      <div class="exam-date" id="sidebarExamDate">exam date not set</div>
+    </div>
+  </aside>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main class="main">
+    <header class="topbar">
+      <h2 id="pageTitle">Dashboard</h2>
+      <span class="today" id="todayLabel"></span>
+      <div class="topbar-spacer"></div>
+      <span class="chip goal" title="Questions marked done (or sent for redo) in the last 7 days, vs your weekly goal"><b id="chipWeeklyDone">0</b>/<span id="chipWeeklyGoal">30</span> this week</span>
+      <span class="chip flame" title="Consecutive days with at least one tracked action">🔥 <b id="chipStreak">0</b> day streak</span>
+    </header>
+
+    <!-- ░░ PAGE: DASHBOARD ░░ -->
+    <section class="page active" id="page-dashboard" aria-label="Dashboard">
+      <div class="hero">
+        <div>
+          <h2 id="heroGreeting">Alright <em>scholar</em> — let’s see the board.</h2>
+          <p id="heroSub">Combined Mathematics · Physics · Chemistry — every past-paper question from 2011 to 2025, one grid each. Skip what you must, but nothing gets lost: the Deferred Queue remembers it for you.</p>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="n" id="heroDone">0</div><div class="l">questions done</div></div>
+          <div class="hero-stat"><div class="n" id="heroPapers">0</div><div class="l">papers fully cleared</div></div>
+          <div class="hero-stat"><div class="n" id="heroDeferred">0</div><div class="l">questions parked for later</div></div>
+        </div>
+      </div>
+
+      <div class="grid grid-3" id="subjectCards"><!-- filled by JS --></div>
+
+      <div class="insights-stack" id="insightsStack"><!-- filled by JS --></div>
+
+      <div class="dash-lower">
+        <div class="card">
+          <div class="card-title"><h3>Skipped — by reason</h3><span class="hint">all subjects</span></div>
+          <div class="donut-wrap">
+            <div class="donut-holder" id="donutHolder"></div>
+            <div class="donut-legend" id="donutLegend"></div>
+          </div>
+          <div class="card-title" style="margin-top: 20px;"><h3>Last 7 days</h3><span class="hint">actions logged</span></div>
+          <div class="week-chart" id="weekChart"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><h3>Recent activity</h3><span class="hint">latest first</span></div>
+          <div class="activity-list" id="activityList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ PAGE: PAPERS ░░ -->
+    <section class="page" id="page-papers" aria-label="Past papers tracker">
+      <div class="subject-tabs" id="subjectTabs"></div>
+      <div class="year-strip" id="yearStrip"></div>
+
+      <div class="legend" aria-label="Status legend">
+        <span><i class="swatch sw-untouched"></i> Not attempted</span>
+        <span><i class="swatch sw-done"></i> Done</span>
+        <span><i class="swatch sw-skipped"></i> Skipped / parked</span>
+        <span><i class="swatch sw-review"></i> Needs redo</span>
+        <span style="color:var(--faint)">Click a cell to cycle status · right-click to go back · double-click to open details</span>
+      </div>
+
+      <div class="filter-bar">
+        <div class="seg" id="statusFilter" role="group" aria-label="Filter questions">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="untouched">Pending only</button>
+          <button data-filter="done">Done</button>
+          <button data-filter="skipped">Skipped</button>
+          <button data-filter="review">Needs redo</button>
+        </div>
+        <div class="spacer"></div>
+        <button class="btn btn-ghost" id="exportQuickBtn" title="Download a JSON backup of everything">⬇ Backup</button>
+      </div>
+
+      <div class="papers-grid" id="papersGrid"></div>
+    </section>
+
+    <!-- ░░ PAGE: DEFERRED QUEUE ░░ -->
+    <section class="page" id="page-deferred" aria-label="Deferred questions queue">
+      <div class="defer-summary" id="deferSummary"></div>
+
+      <div class="filter-bar">
+        <div class="seg" id="deferFilter" role="group" aria-label="Filter deferred questions">
+          <button data-dfilter="all" class="active">All parked</button>
+          <button data-dfilter="ready">✅ Ready now</button>
+          <button data-dfilter="waiting">🔒 Waiting on syllabus</button>
+          <button data-dfilter="concept">Concept unclear</button>
+          <button data-dfilter="time">Ran out of time</button>
+        </div>
+        <div class="spacer"></div>
+        <span class="chip" id="deferHint">“Ready now” = the syllabus unit you linked has been marked done 🎉</span>
+      </div>
+
+      <div class="defer-list" id="deferList"></div>
+    </section>
+
+    <!-- ░░ PAGE: SYLLABUS ░░ -->
+    <section class="page" id="page-syllabus" aria-label="Syllabus coverage">
+      <p style="color:var(--muted); font-size:13px; margin-bottom:16px; max-width:88ch">
+        Tap the circle on any unit to cycle <b>Not started → In progress → Done</b>. Marking a unit <b>Done</b> instantly unlocks every question parked against it in the Deferred Queue — that’s how your “skip for now” pile turns back into a workable to-do list once the syllabus is done.
+        <span style="color:var(--faint)"> High-yield units are the ones past papers return to most — finish those first if you’re cutting corners.</span>
+      </p>
+      <div class="syllabus-cols" id="syllabusCols"></div>
+    </section>
+
+    <!-- ░░ PAGE: PLAN ░░ -->
+    <section class="page" id="page-plan" aria-label="8 month study plan">
+      <div class="card plan-hero">
+        <div class="card-title"><h3>Your 8-month operation, Nov 2026 → Aug 2027</h3><button class="btn btn-sm no-print" id="printPlanBtn">🖨 Print this plan</button></div>
+
+        <div class="phase">
+          <div class="phase-num">1</div>
+          <div>
+            <h4>Close the syllabus gap first — but don’t stop paper practice</h4>
+            <div class="phase-dates">NOV 2026 – DEC 2026 · ~6 weeks</div>
+            <p>You have ~1/4 of each subject left. Finish it unit-by-unit, highest-yield first (red tags on the Syllabus page). For every unit you finish:</p>
+            <ul>
+              <li>Immediately attempt 2015–2025 questions on that unit only — your <b>Deferred Queue “ready now” filter</b> will surface exactly the ones you parked.</li>
+              <li>Mark partial papers (e.g. Paper I Part A only) for covered units.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">2</div>
+          <div>
+            <h4>The grind — one paper per subject per week, marked honestly</h4>
+            <div class="phase-dates">JAN 2027 – MAR 2027 · ~12 weeks</div>
+            <ul>
+              <li><b>Weekly rotation:</b> week on CM Paper I, week on Physics II, week on Chem I… rotate so every subject gets a paper every ~3 weeks. Recent papers (2019+) reflect the current syllabus — do those first, work backwards to 2011.</li>
+              <li><b>Time it:</b> 3 h 10 min reading+paper for 3-hour papers, 2 h for MCQs. No peeking — that’s what the “Ran out of time” skip reason is for.</li>
+              <li><b>Mark with the official scheme the same day.</b> Anything you got wrong or couldn’t start → status <b>Needs redo</b>. Anything untaught → <b>Skipped (Syllabus)</b> + link the unit. Never skip silently.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">3</div>
+          <div>
+            <h4>Exam conditions + choice strategy for optional sections</h4>
+            <div class="phase-dates">APR 2027 – JUN 2027 · ~13 weeks</div>
+            <ul>
+              <li>Full papers back-to-back on weekends, strict timing. MCQs in exactly 2 h — your Paper I speed decides your rank.</li>
+              <li><b>Learn your Part B/C picks now:</b> CM Paper I/II (5 of 7), Physics Paper II Part B (4 of 6), Chem Paper II Parts B &amp; C (2 of 3 + 2 of 3). Track which option questions you reliably get — park the ones you’d never pick with the <b>“Wouldn’t pick in exam”</b> skip reason and stop feeling guilty about them.</li>
+              <li>Keep a one-page “Silly mistakes” log — most lost marks are unit errors, sign errors and misread questions, not ignorance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-num">4</div>
+          <div>
+            <h4>The endgame — clear the parked pile, then taper</h4>
+            <div class="phase-dates">JUL 2027 – EXAM (Aug 2027) · ~5 weeks</div>
+            <ul>
+              <li><b>Deferred Queue → zero.</b> Sort by “Ready now”, then by frequency-of-topic in 2019–2025. Two subjects a day, two hours each.</li>
+              <li>Last 10 days: no new papers. Only your <b>Needs redo</b> list, formula sheets, and sleep.</li>
+              <li>Practical/lab-based questions (Chem Part A/B, Physics practicals) — revise the set procedures and standard answers cold.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-grid">
+        <div class="card plan-card">
+          <h4>🎯 The 3-bucket skipping policy</h4>
+          <ol>
+            <li><b>Skipped (Syllabus)</b> — the question is fine, you’re just not there yet. Link it to the unit. It unlocks automatically when you finish that unit.</li>
+            <li><b>Skipped (Concept)</b> — you don’t understand it even after trying. These are gold: each one is a teaching session with a teacher/video away from marks. Never ignore the pile.</li>
+            <li><b>Skipped (Time / Choice)</b> — log it, move on, revisit in July. Keystrokes, not willpower, keep this list alive.</li>
+          </ol>
+          <p style="margin-top:10px">Rule of thumb: <b>a skip is a promise, not a deletion.</b> The queue is the promise-keeper.</p>
+        </div>
+
+        <div class="card plan-card">
+          <h4>📅 Weekly rhythm (repeat 34×)</h4>
+          <ul>
+            <li><b>Mon</b> — Finish 1 syllabus unit + log it on the Syllabus page</li>
+            <li><b>Tue–Thu</b> — Timed past-paper session, one subject per night (~2 h)</li>
+            <li><b>Fri</b> — Mark that paper with the official scheme; log errors as “Needs redo”</li>
+            <li><b>Sat morning</b> — 1 hr Deferred Queue sweep (ready items only)</li>
+            <li><b>Sat night / Sun</b> — Weak-unit rescue: re-teach yourself the unit behind your most-skipped reason</li>
+            <li><b>Sun night</b> — 5 min: check streak, weekly goal chip, and tomorrow’s target on the Dashboard</li>
+          </ul>
+        </div>
+
+        <div class="card plan-card">
+          <h4>📊 How “readiness” is scored here</h4>
+          <p>Per subject: <b>Readiness = 50% × syllabus coverage + 50% × questions marked done.</b></p>
+          <ul style="margin-top:8px">
+            <li><b>&lt; 25</b> — Getting started (now)</li>
+            <li><b>25–49</b> — Foundations being built</li>
+            <li><b>50–74</b> — On track for the grind phase</li>
+            <li><b>75–89</b> — Exam capable</li>
+            <li><b>90+</b> — Exam ready</li>
+          </ul>
+          <p style="margin-top:8px; color:var(--faint)">Honest by construction: the app can’t give you marks for questions you haven’t touched. Skipping doesn’t lower it, but neither does it raise it — only doing the work does.</p>
+        </div>
+
+        <div class="card plan-card">
+          <h4>🔗 Where to get the papers</h4>
+          <div class="link-list" id="archiveLinks"></div>
+          <p style="margin-top:10px; color:var(--faint)">Marking schemes are published for most papers — always mark against them, not against your gut feel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ PAGE: SETTINGS ░░ -->
+    <section class="page" id="page-settings" aria-label="Settings">
+      <div class="settings-grid">
+        <div class="card">
+          <div class="card-title"><h3>Profile &amp; exam</h3></div>
+          <div class="form-row">
+            <label for="setName">Your name (for the dashboard greeting)</label>
+            <input type="text" id="setName" placeholder="e.g. Nethmi" maxlength="60" autocomplete="off" />
+          </div>
+          <div class="form-row">
+            <label for="setExamDate">A/L exam date (expected)</label>
+            <input type="date" id="setExamDate" min="2026-01-01" max="2035-12-31" />
+          </div>
+          <div class="form-row">
+            <label for="setWeeklyGoal">Weekly goal — questions marked done / redone</label>
+            <input type="number" id="setWeeklyGoal" min="1" max="400" step="5" />
+          </div>
+          <div class="settings-note">GCE A/L is expected around <b>August 2027</b> — the countdown in the sidebar uses this date. Adjust it when the Department of Examinations publishes the official timetable.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><h3>Backup &amp; restore</h3><span class="hint">your data never leaves this device unless you export it</span></div>
+          <p style="font-size:12.5px; color:var(--muted); margin-bottom:14px">Everything you track lives in this browser’s local storage. Clearing browser data wipes it — so export a backup every week or two (e.g. to Google Drive or your phone) and before exam season.</p>
+          <div class="settings-actions">
+            <button class="btn btn-primary" id="exportBtn">⬇ Export backup (.json)</button>
+            <button class="btn" id="importBtn">⬆ Import backup…</button>
+            <input type="file" id="importFile" accept="application/json,.json" hidden />
+          </div>
+          <div class="form-row" style="margin-top:18px">
+            <label>Danger zone</label>
+            <button class="btn btn-danger" id="resetBtn">Reset everything (fresh start)</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><h3>What’s tracked</h3></div>
+          <div class="settings-note" style="border-style:solid">
+            <b>Universe:</b> 2011–2025 · 3 subjects · Combined Maths (2×17/yr), Physics (60/yr), Chemistry (60/yr) = <b>2,310 questions</b>.<br /><br />
+            <b>Paper structure</b> follows the 2019+ format (NIE). Older papers differ slightly in part layout — question counts are kept identical so tracking stays valid; check doenets.lk for historical structures.<br /><br />
+            <b>Unit lists</b> are a practical summary of the NIE syllabi. Add or remove units from the Syllabus page to match your school’s scheme of work — custom units are kept on export.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><h3>Good habits</h3></div>
+          <div class="settings-note" style="border-style:solid">
+            1 · Track <b>the moment</b> you finish — stale logging rots the streak.<br />
+            2 · Never mark “Done” for a question you watched someone else solve. Mark “Needs redo” instead.<br />
+            3 · Every Friday, skim the Deferred Queue. Zero isn’t required — <b>trend</b> is.<br />
+            4 · Back up <b>every Sunday</b>: Export backup → Drive.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ══════════ QUESTION DETAIL DRAWER ══════════ -->
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+<aside class="drawer" id="questionDrawer" role="dialog" aria-modal="true" aria-label="Question details" aria-hidden="true">
+  <div class="drawer-head">
+    <span class="drawer-kicker">Question detail</span>
+    <button class="close-btn" id="closeDrawer" aria-label="Close panel">✕</button>
+  </div>
+  <h3 id="drawerTitle">—</h3>
+  <div class="drawer-part" id="drawerPart">—</div>
+
+  <div class="drawer-section">
+    <label>Status</label>
+    <div class="status-choices">
+      <button class="status-choice" data-st="done"><i>✓</i>Done</button>
+      <button class="status-choice" data-st="skipped"><i>↷</i>Skipped</button>
+      <button class="status-choice" data-st="review"><i>↺</i>Needs redo</button>
+      <button class="status-choice" data-st="clear"><i>∅</i>Clear</button>
+    </div>
+  </div>
+
+  <div class="drawer-section skip-tools" id="skipTools" hidden>
+    <label>Why was it skipped?</label>
+    <select id="skipReason" aria-label="Skip reason"></select>
+    <select id="unlockUnit" aria-label="Syllabus unit that unlocks this question"></select>
+    <div style="font-size:10.5px; color:#d9c07a">“Syllabus not covered yet” parks the question here until you mark that unit Done — it’ll then show as <b>Ready now</b>.</div>
+  </div>
+
+  <div class="drawer-section">
+    <label for="qNote">Your note</label>
+    <textarea id="qNote" placeholder="e.g. forgot the half-angle identity · made a sign error in the 3rd step · good 2019-style question…"></textarea>
+  </div>
+
+  <div class="drawer-section">
+    <label for="qMinutes">Minutes spent (optional)</label>
+    <input type="number" id="qMinutes" min="0" max="600" step="1" placeholder="e.g. 12" />
+  </div>
+
+  <div class="drawer-foot" id="drawerMeta">never attempted</div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
